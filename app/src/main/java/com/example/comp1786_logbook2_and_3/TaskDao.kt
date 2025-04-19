@@ -5,14 +5,14 @@ import androidx.room.*
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM tasks")
-    fun getAll(): List<Task> // Get all tasks
+    fun getAll(): List<Task> // Get all 
 
     @Insert
-    fun insert(task: Task): Long // Insert a task, returns the new ID
+    fun insert(task: Task): Long // Post 
 
     @Update
-    fun update(task: Task) // Update a task
+    fun update(task: Task) // Update 
 
     @Delete
-    fun delete(task: Task) // Delete a task
+    fun delete(task: Task) // Delete
 }
