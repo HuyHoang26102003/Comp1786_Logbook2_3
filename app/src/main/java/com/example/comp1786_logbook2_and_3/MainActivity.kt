@@ -19,18 +19,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize database
+        
         val db = AppDatabase.getDatabase(this)
         taskDao = db.taskDao()
 
-        // Load tasks from database
+     
         tasks.addAll(taskDao.getAll())
 
-        // Set up RecyclerView
+   
         taskAdapter = TaskAdapter(
             tasks,
-            { task -> editTask(task) }, // Edit callback
-            { task -> deleteTask(task) }, // Delete callback
+            { task -> editTask(task) }, 
+            { task -> deleteTask(task) }, 
             { task, isCompleted -> // Completion callback
                 task.isCompleted = isCompleted
                 taskDao.update(task)
@@ -39,25 +39,25 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewTasks.adapter = taskAdapter
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(this)
 
-        // Add button click listener
+        // Add button 
         binding.buttonAdd.setOnClickListener {
             val taskName = binding.editTextTask.text.toString()
             if (taskName.isNotEmpty()) {
                 val task = Task(name = taskName)
-                taskDao.insert(task) // Insert into database
+                taskDao.insert(task) 
                 tasks.add(task) // Add to list
-                taskAdapter.notifyItemInserted(tasks.size - 1) // Update UI
-                binding.editTextTask.text.clear() // Clear input
+                taskAdapter.notifyItemInserted(tasks.size - 1) // UI
+                binding.editTextTask.text.clear() 
             }
         }
     }
 
     private fun deleteTask(task: Task) {
-        taskDao.delete(task) // Remove from database
+        taskDao.delete(task) 
         val position = tasks.indexOf(task)
         if (position != -1) {
-            tasks.removeAt(position) // Remove from list
-            taskAdapter.notifyItemRemoved(position) // Update UI
+            tasks.removeAt(position) 
+            taskAdapter.notifyItemRemoved(position) 
         }
     }
 
@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
             val newName = input.text.toString()
             if (newName.isNotEmpty()) {
                 task.name = newName
-                taskDao.update(task) // Update database
-                taskAdapter.notifyItemChanged(tasks.indexOf(task)) // Update UI
+                taskDao.update(task) 
+                taskAdapter.notifyItemChanged(tasks.indexOf(task)) 
             }
         }
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
