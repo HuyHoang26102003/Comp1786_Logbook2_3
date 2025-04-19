@@ -11,9 +11,9 @@ import com.example.comp1786_logbook2_and_3.R
 
 class TaskAdapter(
     private val tasks: List<Task>,
-    private val onEdit: (Task) -> Unit, // Callback for edit
-    private val onDelete: (Task) -> Unit, // Callback for delete
-    private val onCompleteChange: (Task, Boolean) -> Unit // Callback for checkbox
+    private val onEdit: (Task) -> Unit, 
+    private val onDelete: (Task) -> Unit, 
+    private val onCompleteChange: (Task, Boolean) -> Unit 
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
