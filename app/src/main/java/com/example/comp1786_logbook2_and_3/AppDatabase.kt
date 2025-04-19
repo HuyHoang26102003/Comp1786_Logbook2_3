@@ -19,7 +19,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "todo_database"
-                ).allowMainThreadQueries() // Simple for now, allows DB on main thread
+                ).allowMainThreadQueries() 
                     .build()
                 INSTANCE = instance
                 instance
